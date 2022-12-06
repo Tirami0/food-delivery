@@ -91,6 +91,42 @@ spring:
             allowCredentials: true
 
 ```
+Gateway용사용
+```
+gitpod /workspace/mall2/order (main) $ http :8081/orders
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/hal+json
+Date: Tue, 06 Dec 2022 15:09:27 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+
+{
+    "_embedded": {
+        "orders": []
+    },
+    "_links": {
+        "profile": {
+            "href": "http://localhost:8081/profile/orders"
+        },
+        "self": {
+            "href": "http://localhost:8081/orders"
+        }
+    },
+    "page": {
+        "number": 0,
+        "size": 20,
+        "totalElements": 0,
+        "totalPages": 0
+    }
+}
+
+
+gitpod /workspace/mall2/order (main) $ 
+```
 
 # 추가 요구사항 : 고객이 상점의 배달된 요리 평가점수를 등록한다.
 
