@@ -92,7 +92,7 @@ spring:
             allowCredentials: true
 
 ```
-Gateway 사용
+orders(8081) Gateway(8988) 사용
 ```
 gitpod /workspace/mall2/order (main) $ http :8081/orders
 HTTP/1.1 200 
@@ -104,6 +104,36 @@ Transfer-Encoding: chunked
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
+
+{
+    "_embedded": {
+        "orders": []
+    },
+    "_links": {
+        "profile": {
+            "href": "http://localhost:8081/profile/orders"
+        },
+        "self": {
+            "href": "http://localhost:8081/orders"
+        }
+    },
+    "page": {
+        "number": 0,
+        "size": 20,
+        "totalElements": 0,
+        "totalPages": 0
+    }
+}
+
+
+gitpod /workspace/mall2/order (main) $ http :8088/orders
+HTTP/1.1 200 OK
+Content-Type: application/hal+json
+Date: Tue, 06 Dec 2022 15:32:31 GMT
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+transfer-encoding: chunked
 
 {
     "_embedded": {
