@@ -1,4 +1,4 @@
-
+![image](https://user-images.githubusercontent.com/118098096/205941104-93752bcc-f25e-41d6-a50d-05e76719242f.png)
 
 # 서비스 시나리오
 
@@ -37,8 +37,7 @@
 6. Gateway/Ingress
 
 # Saga(Pub/Sub)
-<img width="483" alt="스크린샷 2022-12-06 오전 10 22 47" src="https://user-images.githubusercontent.com/118098096/205785237-f54eb5b3-b126-4b15-af97-2aefc0dbc78b.png">
-OrderAccepted, OrderRejected, CookStarted, CookFinished, Commented, Picked, Deliver event들이  notify policy와 pub/sub 관계를 이룬다.
+
 
 # CQRS
 
