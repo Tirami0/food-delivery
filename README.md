@@ -1,6 +1,5 @@
-![image](https://user-images.githubusercontent.com/118098096/205941104-93752bcc-f25e-41d6-a50d-05e76719242f.png)
-
 # 서비스 시나리오
+![image](https://user-images.githubusercontent.com/118098096/205941104-93752bcc-f25e-41d6-a50d-05e76719242f.png)
 
 기능적 요구사항
 1. 고객이 메뉴를 선택하여 주문한다.
@@ -49,4 +48,6 @@
 
 # Gateway/Ingress
 
+# 추가 요구사항 : 고객이 상점의 배달된 요리 평가점수를 등록한다.
 
+# 추가 요구사항 : 상점에서 요리 평가 점수 조회가 가능하다.
