@@ -1,4 +1,4 @@
-https://user-images.githubusercontent.com/118098096/205776104-3a63fe08-e5e0-4943-8a6a-7e14e0df7545.png
+
 
 # 서비스 시나리오
 
@@ -25,6 +25,8 @@ https://user-images.githubusercontent.com/118098096/205776104-3a63fe08-e5e0-4943
 2. 성능
     1. 고객이 자주 상점관리에서 확인할 수 있는 배달상태를 주문시스템(프론트엔드)에서 확인할 수 있어야 한다 CQRS
     2. 배달상태가 바뀔때마다 카톡 등으로 알림을 줄 수 있어야 한다 Event driven
+
+<img width="825" alt="스크린샷 2022-12-06 오전 9 24 47" src="https://user-images.githubusercontent.com/118098096/205776104-3a63fe08-e5e0-4943-8a6a-7e14e0df7545.png">
 
 # 체크포인트
 1. Saga (Pub/Sub)
