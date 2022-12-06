@@ -48,6 +48,7 @@
 # Circuit Breaker
 
 # Gateway/Ingress
+application.yml
 ```
 server:
   port: 8088
@@ -91,7 +92,7 @@ spring:
             allowCredentials: true
 
 ```
-Gateway용사용
+Gateway 사용
 ```
 gitpod /workspace/mall2/order (main) $ http :8081/orders
 HTTP/1.1 200 
