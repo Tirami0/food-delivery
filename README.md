@@ -48,6 +48,49 @@
 # Circuit Breaker
 
 # Gateway/Ingress
+```
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: order
+          uri: http://localhost:8081
+          predicates:
+            - Path=/orders/**, 
+        - id: rider
+          uri: http://localhost:8082
+          predicates:
+            - Path=/deliveries/**, /deliveryInfos/**
+        - id: customer
+          uri: http://localhost:8083
+          predicates:
+            - Path=, /myPages/**
+        - id: store
+          uri: http://localhost:8084
+          predicates:
+            - Path=/foodCookings/**, /shopPages/**
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+```
 
 # 추가 요구사항 : 고객이 상점의 배달된 요리 평가점수를 등록한다.
 
