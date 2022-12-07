@@ -330,5 +330,7 @@ gitpod /workspace/mall2/order (main) $
 
 
 # 추가 요구사항 : 고객이 상점의 배달된 요리 평가점수를 등록한다.
+![image](https://user-images.githubusercontent.com/118098096/206206980-b0971836-02f6-4752-bec1-2660463abd3a.png)
 
 # 추가 요구사항 : 상점에서 요리 평가 점수 조회가 가능하다.
+![image](https://user-images.githubusercontent.com/118098096/206207322-95fe5f88-d00e-48f4-9c1c-6726d380a9e6.png)
