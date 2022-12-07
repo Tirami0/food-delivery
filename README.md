@@ -214,7 +214,109 @@ Vary: Access-Control-Request-Headers
 
 
 # Compensation/Correaltion
-어떠한 이벤트로 인하여 발생한 변경사항들에 대하여 고객이 원하거나 어떠한 기술적 이유로 인하여 해당 트랜잭션을 취소해야 하는 경우 이를 원복하거나 보상해주는 처리를 Compensation 이라고 한다. 그리고 해당 취소건에 대하여 여러개의 마이크로 서비스 내의 데이터간 상관 관계를 키값으로 연결하여 취소해야 하는데, 이러한 관계값에 대한 처리를 Correlation 이라고 한다.
+주문 후 취소시 FoodCooking 상태 변경
+구현
+```
+    public static void updateStatus(OrderCanceld orderCanceld){
+
+            repository().findById(orderCanceld.getOrderId()).ifPresent(foodCooking->{            
+            foodCooking.setStatus("canceled"); // do something
+            repository().save(foodCooking);
+
+           });
+
+```
+
+주문
+```
+gitpod /workspace/mall2/order (main) $ http :8081/orders  foodId="짬뽕" address="인천"
+HTTP/1.1 201 
+Connection: keep-alive
+Content-Type: application/json
+Date: Wed, 07 Dec 2022 16:40:11 GMT
+Keep-Alive: timeout=60
+Location: http://localhost:8081/orders/1
+Transfer-Encoding: chunked
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+
+{
+    "_links": {
+        "order": {
+            "href": "http://localhost:8081/orders/1"
+        },
+        "self": {
+            "href": "http://localhost:8081/orders/1"
+        }
+    },
+    "address": "인천",
+    "foodId": "짬뽕",
+    "payed": null,
+    "rate": null,
+    "status": null
+}
+```
+취소
+```
+gitpod /workspace/mall2/order (main) $ http DELETE :8081/orders/1
+HTTP/1.1 204 
+Connection: keep-alive
+Date: Wed, 07 Dec 2022 16:41:56 GMT
+Keep-Alive: timeout=60
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+```
+foodCookings 확인
+```
+
+gitpod /workspace/mall2/store (main) $ http :8084/foodCookings
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/hal+json
+Date: Wed, 07 Dec 2022 16:42:01 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+
+{
+    "_embedded": {
+        "foodCookings": [
+            {
+                "_links": {
+                    "foodCooking": {
+                        "href": "http://localhost:8084/foodCookings/1"
+                    },
+                    "self": {
+                        "href": "http://localhost:8084/foodCookings/1"
+                    }
+                },
+                "address": "인천",
+                "foodId": "짬뽕",
+                "rate": null,
+                "status": "canceled"
+            }
+        ]
+    },
+    "_links": {
+        "profile": {
+            "href": "http://localhost:8084/profile/foodCookings"
+        },
+        "self": {
+            "href": "http://localhost:8084/foodCookings"
+        }
+    },
+    "page": {
+        "number": 0,
+        "size": 20,
+        "totalElements": 1,
+        "totalPages": 1
+    }
+}
+```
 
 # Request/Response
 
