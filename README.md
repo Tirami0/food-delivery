@@ -130,6 +130,85 @@ Vary: Access-Control-Request-Headers
     
 
 # CQRS
+customer myPage의 CQRS 설정
+![image](https://user-images.githubusercontent.com/118098096/206204912-07758143-b824-4ad4-abf2-a80a316b74e6.png)
+
+소스 구현
+```
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenOrderPlaced_then_CREATE_1 (@Payload OrderPlaced orderPlaced) {
+        try {
+
+            if (!orderPlaced.validate()) return;
+
+            // view 객체 생성
+            MyPage myPage = new MyPage();
+            // view 객체에 이벤트의 Value 를 set 함
+            myPage.setOrderId(orderPlaced.getOrderId());
+            myPage.setAddress(orderPlaced.getAddress());
+            myPage.setFoodId(orderPlaced.getFoodId());
+            myPage.setStatus("주문됨");
+            // view 레파지 토리에 save
+            myPageRepository.save(myPage);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+```    
+주문 후 현황
+```
+gitpod /workspace/mall2/customer (main) $ http :8083/myPages
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/hal+json
+Date: Wed, 07 Dec 2022 14:17:00 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+
+{
+    "_embedded": {
+        "myPages": [
+            {
+                "_links": {
+                    "myPage": {
+                        "href": "http://localhost:8083/myPages/1"
+                    },
+                    "self": {
+                        "href": "http://localhost:8083/myPages/1"
+                    }
+                },
+                "address": "인천",
+                "foodId": "짜장면",
+                "payed": null,
+                "rate": null,
+                "status": "주문됨"
+            }
+        ]
+    },
+    "_links": {
+        "profile": {
+            "href": "http://localhost:8083/profile/myPages"
+        },
+        "search": {
+            "href": "http://localhost:8083/myPages/search"
+        },
+        "self": {
+            "href": "http://localhost:8083/myPages"
+        }
+    },
+    "page": {
+        "number": 0,
+        "size": 20,
+        "totalElements": 1,
+        "totalPages": 1
+    }
+}
+```
+
 
 # Compensation/Correaltion
 
