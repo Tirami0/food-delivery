@@ -132,6 +132,7 @@ Vary: Access-Control-Request-Headers
 # CQRS
 customer myPage의 CQRS 설정
 ![image](https://user-images.githubusercontent.com/118098096/206208962-50309fef-c94f-40bf-9170-cb98f5fd2c88.png)
+
 소스 구현
 ```
     @StreamListener(KafkaProcessor.INPUT)
