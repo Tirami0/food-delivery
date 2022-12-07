@@ -37,7 +37,97 @@
 6. Gateway/Ingress
 
 # Saga(Pub/Sub)
+foodCookings.java 파일에 orderPlaced 이벤트 발생시 구현부
+```
+    public static void updateStatus(OrderPlaced orderPlaced){
 
+        FoodCooking foodCooking = new FoodCooking();
+        foodCooking.setOrderId(orderPlaced.getOrderId());
+        foodCooking.setAddress(orderPlaced.getAddress());
+        foodCooking.setFoodId(orderPlaced.getFoodId());
+        foodCooking.setStatus("ordered");
+        repository().save(foodCooking);        
+    }
+```
+주문 
+```
+itpod /workspace/mall2/order (main) $ http :8081/orders orderId=1 foodId="짜장면" address="인천"
+HTTP/1.1 201 
+Connection: keep-alive
+Content-Type: application/json
+Date: Wed, 07 Dec 2022 14:16:52 GMT
+Keep-Alive: timeout=60
+Location: http://localhost:8081/orders/1
+Transfer-Encoding: chunked
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+
+{
+    "_links": {
+        "order": {
+            "href": "http://localhost:8081/orders/1"
+        },
+        "self": {
+            "href": "http://localhost:8081/orders/1"
+        }
+    },
+    "address": "인천",
+    "foodId": "짜장면",
+    "payed": null,
+    "rate": null,
+    "status": null
+}
+```
+주문 후 store에 foodCooking 정보
+```
+gitpod /workspace/mall2/store (main) $ http :8084/foodCookings
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/hal+json
+Date: Wed, 07 Dec 2022 14:17:58 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+
+{
+    "_embedded": {
+        "foodCookings": [
+            {
+                "_links": {
+                    "foodCooking": {
+                        "href": "http://localhost:8084/foodCookings/1"
+                    },
+                    "self": {
+                        "href": "http://localhost:8084/foodCookings/1"
+                    }
+                },
+                "address": "인천",
+                "foodId": "짜장면",
+                "rate": null,
+                "status": "ordered"
+            }
+        ]
+    },
+    "_links": {
+        "profile": {
+            "href": "http://localhost:8084/profile/foodCookings"
+        },
+        "self": {
+            "href": "http://localhost:8084/foodCookings"
+        }
+    },
+    "page": {
+        "number": 0,
+        "size": 20,
+        "totalElements": 1,
+        "totalPages": 1
+    }
+}
+```   
+    
 
 # CQRS
 
@@ -158,6 +248,7 @@ transfer-encoding: chunked
 
 gitpod /workspace/mall2/order (main) $ 
 ```
+
 
 # 추가 요구사항 : 고객이 상점의 배달된 요리 평가점수를 등록한다.
 
