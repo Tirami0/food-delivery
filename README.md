@@ -49,7 +49,9 @@ foodCookings.java 파일에 orderPlaced 이벤트 발생시 구현부
         repository().save(foodCooking);        
     }
 ```
+
 주문 
+
 ```
 itpod /workspace/mall2/order (main) $ http :8081/orders orderId=1 foodId="짜장면" address="인천"
 HTTP/1.1 201 
@@ -79,7 +81,9 @@ Vary: Access-Control-Request-Headers
     "status": null
 }
 ```
+
 주문 후 store에 foodCooking 정보
+
 ```
 gitpod /workspace/mall2/store (main) $ http :8084/foodCookings
 HTTP/1.1 200 
@@ -127,6 +131,7 @@ Vary: Access-Control-Request-Headers
     }
 }
 ```   
+
     
 
 # CQRS
