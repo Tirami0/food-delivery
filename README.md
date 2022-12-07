@@ -81,9 +81,19 @@ Vary: Access-Control-Request-Headers
     "status": null
 }
 ```
+주문 취소
+```
+gitpod /workspace/mall2/order (main) $ http DELETE :8081/orders/1
+HTTP/1.1 204 
+Connection: keep-alive
+Date: Wed, 07 Dec 2022 16:41:56 GMT
+Keep-Alive: timeout=60
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+```
 
-주문 후 store에 foodCooking 정보
-
+주문 취소 store에 foodCooking 정보
 ```
 gitpod /workspace/mall2/store (main) $ http :8084/foodCookings
 HTTP/1.1 200 
