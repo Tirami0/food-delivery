@@ -131,7 +131,8 @@ Vary: Access-Control-Request-Headers
 
 # CQRS
 customer myPage의 CQRS 설정
-![image](https://user-images.githubusercontent.com/118098096/206204912-07758143-b824-4ad4-abf2-a80a316b74e6.png)
+![image](https://user-images.githubusercontent.com/118098096/206208488-9b7abc73-4338-49db-9ac1-98d335b7d4cf.png)
+
 
 소스 구현
 ```
