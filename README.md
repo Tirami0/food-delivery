@@ -334,6 +334,73 @@ Vary: Access-Control-Request-Headers
 ```
 
 # Request/Response
+주문 수락 취소 controller 방식 설정
+
+
+
+![image](https://user-images.githubusercontent.com/118098096/206245923-364b3a7a-1622-4df8-9e1e-fc9642dfc631.png)
+
+![image](https://user-images.githubusercontent.com/118098096/206246017-1a82bb58-7927-4afe-bd6d-16d7a635f7b4.png)
+
+소스 구현
+accept 변수 값에 따라 이벤트 발생 및 상태 
+```
+    public void accept(AcceptCommand acceptCommand){
+
+        if(acceptCommand.getAccept())
+        {
+            OrderAccepted orderAccepted = new OrderAccepted(this);
+            orderAccepted.publishAfterCommit();
+            setStatus("접수됨");
+        }
+        else
+        {
+            OrderRejected orderRejected = new OrderRejected(this);
+            orderRejected.publishAfterCommit();
+            setStatus("취소됨");
+        }
+
+    }
+```
+
+접수
+```
+gitpod /workspace/mall3/store (main) $ http PUT localhost:8084/foodCookings/1/accept accept=true
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/json;charset=UTF-8
+Date: Wed, 07 Dec 2022 17:12:03 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+
+{
+    "address": null,
+    "foodId": "짬뽕",
+    "orderId": 1,
+    "rate": null,
+    "status": "접수됨",
+    "stock": null
+}
+```
+취소
+```
+gitpod /workspace/mall3/store (main) $ http PUT localhost:8084/foodCookings/1/accept accept=false
+HTTP/1.1 200 
+Connection: keep-alive
+Content-Type: application/json;charset=UTF-8
+Date: Wed, 07 Dec 2022 17:12:11 GMT
+Keep-Alive: timeout=60
+Transfer-Encoding: chunked
+
+{
+    "address": null,
+    "foodId": "짬뽕",
+    "orderId": 1,
+    "rate": null,
+    "status": "취소됨",
+    "stock": null
+}
+```
 
 # Circuit Breaker
 
