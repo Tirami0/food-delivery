@@ -322,12 +322,12 @@ Vary: Access-Control-Request-Headers
 ```
 
 # Request/Response
-주문 수락 취소 controller 방식 설정
+주문 수락/거절 controller 방식 설정
 
 ![image](https://user-images.githubusercontent.com/118098096/206246970-9b607981-e39e-4767-8db4-e809111165e5.png)
 
 
-소스 구현 accept 변수 값에 따라 이벤트 발생 및 상태 
+소스 구현 : accept 변수 값에 따라 이벤트 발생 및 상태 
 ```
     public void accept(AcceptCommand acceptCommand){
 
