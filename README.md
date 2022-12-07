@@ -219,6 +219,9 @@ Vary: Access-Control-Request-Headers
 # Request/Response
 
 # Circuit Breaker
+서킷브레이커 테스트를 위하여 monolith 에서 order Command 에서 foodCooking 의 재고량을 조회하는(GET) 호출을 그린다
+호출선의 설정에서 Circuit breaker 옵션을 On 한다
+![image](https://user-images.githubusercontent.com/118098096/206221921-6c8c0248-c120-4dba-a3e8-95bd79b479fc.png)
 
 # Gateway/Ingress
 application.yml
