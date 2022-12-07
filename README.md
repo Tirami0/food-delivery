@@ -336,14 +336,10 @@ Vary: Access-Control-Request-Headers
 # Request/Response
 주문 수락 취소 controller 방식 설정
 
+![image](https://user-images.githubusercontent.com/118098096/206246970-9b607981-e39e-4767-8db4-e809111165e5.png)
 
 
-![image](https://user-images.githubusercontent.com/118098096/206245923-364b3a7a-1622-4df8-9e1e-fc9642dfc631.png)
-
-![image](https://user-images.githubusercontent.com/118098096/206246017-1a82bb58-7927-4afe-bd6d-16d7a635f7b4.png)
-
-소스 구현
-accept 변수 값에 따라 이벤트 발생 및 상태 
+소스 구현 accept 변수 값에 따라 이벤트 발생 및 상태 
 ```
     public void accept(AcceptCommand acceptCommand){
 
@@ -363,7 +359,7 @@ accept 변수 값에 따라 이벤트 발생 및 상태
     }
 ```
 
-접수
+주문 
 ```
 gitpod /workspace/mall3/store (main) $ http PUT localhost:8084/foodCookings/1/accept accept=true
 HTTP/1.1 200 
@@ -382,7 +378,7 @@ Transfer-Encoding: chunked
     "stock": null
 }
 ```
-취소
+주문 거절
 ```
 gitpod /workspace/mall3/store (main) $ http PUT localhost:8084/foodCookings/1/accept accept=false
 HTTP/1.1 200 
