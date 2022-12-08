@@ -473,7 +473,7 @@ HTTP/1.1 201     0.02 secs:     267 bytes ==> POST http://localhost:8081/orders
 HTTP/1.1 201     0.01 secs:     267 bytes ==> POST http://localhost:8081/orders
 HTTP/1.1 201     0.01 secs:     267 bytes ==> POST http://localhost:8081/orders
 HTTP/1.1 201     0.01 secs:     267 bytes ==> POST http://localhost:8081/orders
-
+```
 
 # Gateway/Ingress
 application.yml
