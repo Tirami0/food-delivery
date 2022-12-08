@@ -387,6 +387,73 @@ Transfer-Encoding: chunked
 ```
 
 # Circuit Breaker
+store 의 application.yml 파일에 임계치 설정
+```
+server:
+  port: 8080
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution.isolation.thread.timeoutInMilliseconds: 500
+spring:
+  application:
+    name: store
+---
+
+```
+foodCooking.java에 delay 설정
+```
+    @PostLoad
+    public void makeDelay(){
+         try {
+             Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         }
+
+    }
+```
+
+siege 설치
+```
+gitpod /workspace/mall4/store (main) $ sudo apt update -y
+Hit:1 https://download.docker.com/linux/ubuntu focal InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu focal InRelease                                                        
+Hit:4 http://security.ubuntu.com/ubuntu focal-security InRelease                                 
+Hit:5 http://ppa.launchpad.net/git-core/ppa/ubuntu focal InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu focal-updates InRelease
+Hit:7 http://archive.ubuntu.com/ubuntu focal-backports InRelease           
+Hit:8 http://ppa.launchpad.net/ondrej/apache2/ubuntu focal InRelease       
+Hit:2 https://apt.llvm.org/focal llvm-toolchain-focal-15 InRelease   
+Hit:9 http://ppa.launchpad.net/ondrej/nginx-mainline/ubuntu focal InRelease
+Hit:10 http://ppa.launchpad.net/ondrej/php/ubuntu focal InRelease
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+90 packages can be upgraded. Run 'apt list --upgradable' to see them.
+gitpod /workspace/mall4/store (main) $ sudo apt install siege -y
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following NEW packages will be installed:
+  siege
+0 upgraded, 1 newly installed, 0 to remove and 90 not upgraded.
+Need to get 98.3 kB of archives.
+After this operation, 278 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu focal/main amd64 siege amd64 4.0.4-1build1 [98.3 kB]
+Fetched 98.3 kB in 0s (265 kB/s) 
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package siege.
+(Reading database ... 36156 files and directories currently installed.)
+Preparing to unpack .../siege_4.0.4-1build1_amd64.deb ...
+Unpacking siege (4.0.4-1build1) ...
+Setting up siege (4.0.4-1build1) ...
+Processing triggers for man-db (2.9.1-1) ...
+```
+
 
 
 # Gateway/Ingress
