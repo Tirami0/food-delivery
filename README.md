@@ -453,7 +453,29 @@ Unpacking siege (4.0.4-1build1) ...
 Setting up siege (4.0.4-1build1) ...
 Processing triggers for man-db (2.9.1-1) ...
 ```
-
+부하툴 사용
+```
+gitpod /workspace/mall4/store (main) $ siege -c2 -t10S  -v --content-type "application/json" 'http://localhost:8084/foodCookings POST {"foodId":"짬뽕" "address:"인천"}'
+** SIEGE 4.0.4
+** Preparing 2 concurrent users for battle.
+The server is now under siege...
+HTTP/1.1 400     0.00 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.00 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.00 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.00 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.00 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.01 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.01 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.00 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.00 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.01 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.01 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.14 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.14 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.01 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.00 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+HTTP/1.1 400     0.01 secs:     564 bytes ==> POST http://localhost:8084/foodCookings
+```
 
 
 # Gateway/Ingress
